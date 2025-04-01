@@ -1,107 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Project Readme</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center">Blog Project</h1>
-        
-        <h2>Introduction</h2>
-        <p>This is a full-stack Blog Application built using Django, Django REST Framework (DRF), MySQL for the backend, and React with Bootstrap for the frontend. It includes user authentication, blog creation, comments, and other essential features.</p>
+# Blog Project
 
-        <h2>Features</h2>
-        <h3>Backend (Django & DRF)</h3>
-        <ul>
-            <li>Set up the blog project and create the main app</li>
-            <li>Use MySQL as the database</li>
-            <li>Create models for User, Blog Posts, and Comments</li>
-            <li>Set up the Django Admin interface</li>
-            <li>Implement REST API for Login, Logout, User Registration</li>
-            <li>User Authentication and Registration</li>
-            <li>Email verification at the time of signup</li>
-            <li>Forgot Password functionality with password reset email</li>
-            <li>Only logged-in users can create new blog posts</li>
-            <li>Pagination & Search</li>
-            <li>Commenting system for logged-in users</li>
-        </ul>
+## Introduction
+This is a full-stack Blog Application built using Django, Django REST Framework (DRF), MySQL for the backend, and React with Bootstrap for the frontend. It includes user authentication, blog creation, comments, and other essential features.
 
-        <h3>Frontend (React & Bootstrap)</h3>
-        <ul>
-            <li>Basic layout and navigation</li>
-            <li>User authentication components (Login, Logout, Registration)</li>
-            <li>Create Blog functionality with validation</li>
-            <li>Display blogs with pagination and search</li>
-            <li>Commenting system for logged-in users</li>
-            <li>Styling & Responsiveness using Bootstrap</li>
-        </ul>
+## Features
 
-        <h2>Installation & Setup</h2>
-        <h3>Prerequisites</h3>
-        <p>Ensure you have the following installed:</p>
-        <ul>
-            <li>Python (>=3.8)</li>
-            <li>Django</li>
-            <li>Django REST Framework</li>
-            <li>MySQL Server</li>
-            <li>Node.js & npm</li>
-            <li>React</li>
-        </ul>
+### Backend (Django & DRF)
+- Set up the blog project and create the main app
+- Use MySQL as the database
+- Create models for User, Blog Posts, and Comments
+- Set up the Django Admin interface
+- Implement REST API for:
+  - Login
+  - Logout
+  - User Registration
+- User Authentication and Registration
+- **Email verification at the time of signup**
+  - If a user does not verify their email at signup and later tries to log in with the same credentials, a new verification email will be sent.
+  - The verification link will have an expiration time, after which it becomes invalid.
+- **Forgot Password functionality** with password reset email
+- **Blog post functionalities:**
+  - Only logged-in users can create new blog posts
+  - Each blog post includes Title, Description, and an Image
+  - Implement validation on blog creation
+  - Handle form submissions and display success messages
+- **Pagination & Search**
+  - Show all blog posts with pagination
+  - Implement search functionality
+- **Commenting system:**
+  - Only logged-in users can add comments
+  - Display all comments publicly
+  - Set up database relationships for comments and blog posts
 
-        <h3>Backend Setup</h3>
-        <pre>
-1. Clone the repository:
-   git clone https://github.com/your-repo/blog-project.git
-   cd blog-project
+### Frontend (React & Bootstrap)
+- Basic layout and navigation
+- User authentication components for:
+  - Login
+  - Logout
+  - User Registration
+- **Create Blog functionality:**
+  - Form for creating new blog posts
+  - Implement frontend validation
+- **Display Blog Posts:**
+  - Show all blogs with pagination
+  - Implement search functionality
+- **Comments section:**
+  - Allow logged-in users to comment on any blog post
+  - Display comments under each post
+- **Styling & Responsiveness:**
+  - Apply CSS and Bootstrap for a modern UI
+  - Enhance styling for better user experience
 
-2. Create and activate a virtual environment:
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+## Installation & Setup
 
-3. Install dependencies:
-   pip install -r requirements.txt
+### Prerequisites
+Ensure you have the following installed:
+- Python (>=3.8)
+- Django
+- Django REST Framework
+- MySQL Server
+- Node.js & npm
+- React
 
-4. Configure MySQL database in settings.py
+### Backend Setup
+```sh
+# Clone the repository
+git clone https://github.com/your-repo/blog-project.git
+cd blog-project
 
-5. Run migrations:
-   python manage.py migrate
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
-6. Create a superuser:
-   python manage.py createsuperuser
+# Install dependencies
+pip install -r requirements.txt
 
-7. Start the backend server:
-   python manage.py runserver
-        </pre>
+# Configure MySQL database in settings.py
 
-        <h3>Frontend Setup</h3>
-        <pre>
-1. Navigate to the frontend directory:
-   cd frontend
+# Run migrations
+python manage.py migrate
 
-2. Install dependencies:
-   npm install
+# Create a superuser
+python manage.py createsuperuser
 
-3. Start the frontend server:
-   npm start
-        </pre>
-
-        <h2>Usage</h2>
-        <ul>
-            <li>Open the frontend in your browser at <code>http://localhost:3000</code></li>
-            <li>Register a new account and verify your email</li>
-            <li>If you don't verify your email and try to log in, a new verification email will be sent</li>
-            <li>Login to create blog posts and comments</li>
-            <li>Browse and search blog posts</li>
-        </ul>
-
-        <h2>Contributing</h2>
-        <p>Feel free to fork this repository and contribute by submitting pull requests.</p>
-
-        <h2>License</h2>
-        <p>This project is licensed under the MIT License.</p>
-    </div>
-</body>
-</html>
+# Start the backend server
+python manage.py runserver
