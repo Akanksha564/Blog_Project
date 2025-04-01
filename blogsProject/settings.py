@@ -144,7 +144,7 @@ AUTH_USER_MODEL = 'blogs.User'
 # AUTHENTICATION_BACKENDS = ['blogs.authentication.EmailOrUsernameBackend']
 AUTHENTICATION_BACKENDS = [
     'blogs.authentication.EmailOrUsernameBackend',
-    'django.contrib.auth.backends.ModelBackend',  # Add this to allow normal login
+    'django.contrib.auth.backends.ModelBackend',  
 ]
 
 
@@ -191,12 +191,3 @@ CORS_ALLOW_HEADERS = [
     "authorization",
 ]
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-# }
-# FRONTEND_URL = "http://127.0.0.1:3000"

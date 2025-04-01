@@ -109,7 +109,6 @@ class BlogSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()  
-    # author = serializers.ReadOnlyField(source='author.username')  
     blog = serializers.PrimaryKeyRelatedField(queryset=Blog.objects.all(), write_only=True)
 
     class Meta:

@@ -30,8 +30,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets, permissions, status
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -125,23 +123,8 @@ class ResendVerificationEmailView(APIView):
             return Response({"error": "User not found."}, status=status.HTTP_400_BAD_REQUEST)
 
 
-# class LogoutView(APIView):
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def post(self, request):
-#         refresh_token = request.data.get("refresh_token")
-#         if not refresh_token:
-#             return Response({"error": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
-
-#         try:
-#             token = RefreshToken(refresh_token)
-#             token.blacklist()
-#             return Response({"message": "Logged out successfully"}, status=status.HTTP_205_RESET_CONTENT)
-#         except Exception:
-#             return Response({"error": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
-
 class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
         refresh_token = request.data.get("refresh_token")
@@ -151,16 +134,10 @@ class LogoutView(APIView):
         try:
             token = RefreshToken(refresh_token)
             token.blacklist()
-
-            access_token = request.data.get("access_token")
-            if access_token:
-                access_token_obj = AccessToken(access_token)
-                access_token_obj.blacklist()
-
             return Response({"message": "Logged out successfully"}, status=status.HTTP_205_RESET_CONTENT)
+        except Exception:
+            return Response({"error": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
 
-        except Exception as e:
-            return Response({"error": "Invalid token", "details": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
 class PasswordResetRequestView(APIView):
     permission_classes = [AllowAny]  
@@ -206,7 +183,6 @@ class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all().order_by('-created_at')
     serializer_class = BlogSerializer
     pagination_class = BlogPagination
-    # Permission_classes = [permissions.IsAuthenticated]
 
 
     def update(self, request, *args, **kwargs):

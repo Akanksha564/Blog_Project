@@ -1,8 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import refreshToken from "./refreshToken"; // Token refresh function
-
+import refreshToken from "./refreshToken"; 
 const Comments = ({ blogId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");

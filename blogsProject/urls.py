@@ -25,7 +25,6 @@ from blogs.views import LoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blogs.urls')),  # Include the app's URLs
-    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/', LoginView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

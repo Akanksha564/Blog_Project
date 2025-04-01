@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
-  const { uid, token } = useParams(); // Get uid and token from the URL
+  const { uid, token } = useParams(); 
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -19,7 +19,7 @@ const ResetPassword = () => {
 
     if (response.ok) {
       setTimeout(() => {
-        navigate("/login"); // Redirect to login after 2 seconds
+        navigate("/login"); 
       }, 2000);
     }
   };

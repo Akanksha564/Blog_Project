@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
-// import "../styles/LoginStyles.css";
 
 const Login = ({setUser}) => {
     const [email, setEmail] = useState("");
-    // const [emailOrUsername, setEmailOrUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");  

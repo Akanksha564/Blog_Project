@@ -7,7 +7,6 @@ from .views import (
     PasswordResetConfirmView, ResendVerificationEmailView,CreateBlogView,MyBlogsView
 )
 
-# ✅ Set up the router for blog and comment APIs
 router = DefaultRouter()
 router.register(r'blogs', BlogViewSet)
 router.register(r'comments', CommentViewSet)
