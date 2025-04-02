@@ -16,7 +16,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   backend:
-    build: ./backend
+    build: ./blogs
     container_name: django_backend
     restart: always
     depends_on:
@@ -32,7 +32,7 @@ services:
       - ./backend:/app
 
   frontend:
-    build: ./blog_frontend
+    build: ./blog-frontend
     container_name: react_frontend
     restart: always
     depends_on:
