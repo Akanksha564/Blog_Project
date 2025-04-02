@@ -13,8 +13,9 @@ COPY . /app/
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 8000 for Django
+# Expose port 8005 for Django
 EXPOSE 8005
 
 # Start Gunicorn with the Django WSGI application
 CMD ["gunicorn", "--bind", "0.0.0.0:8005", "blogsProject.wsgi:application"]
+

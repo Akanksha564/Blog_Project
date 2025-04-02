@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: Akanksha@123
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "3012:3012"
+      - "3012:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -25,11 +25,11 @@ services:
       - DB_NAME=blog_db
       - DB_USER=blog_user
       - DB_PASSWORD=Akanksha@123
-      - DB_HOST=localhost
+      - DB_HOST=db  
     ports:
       - "8005:8005"
     volumes:
-      - ./backend:/app
+      - ./blogs:/app
 
   frontend:
     build: ./blog-frontend
@@ -38,7 +38,13 @@ services:
     depends_on:
       - backend
     ports:
-      - "5005:80"
+      - "5005:5005"
+    environment:
+      - CHOKIDAR_USEPOLLING=true  
+    volumes:
+      - ./blog-frontend:/app
+      - /app/node_modules  
 
 volumes:
   mysql_data:
+
