@@ -82,19 +82,39 @@ WSGI_APPLICATION = 'blogsProject.wsgi.application'
 
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'blog_db',  
+#         'USER': 'blog_user',  
+#         'PASSWORD': 'Akanksha@123',  
+#         'HOST': 'localhost',  
+#         'PORT': '3306',  
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog_db',  
-        'USER': 'blog_user',  
-        'PASSWORD': 'Akanksha@123',  
-        'HOST': 'localhost',  
-        'PORT': '3306',  
+        'NAME': os.getenv("DB_NAME", "blog_db"),
+        'USER': os.getenv("DB_USER", "blog_user"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "Akanksha@123"),
+        'HOST': os.getenv("DB_HOST", "localhost"),  
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 }
+
+MEDIA_URL = "/blog_images/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "blog_images")
+
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 
@@ -132,16 +152,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-MEDIA_URL = "/blog_images/"  # URL for accessing images
-# MEDIA_ROOT = os.path.join(BASE_DIR, "blog_images")
-STATIC_URL = 'static/'
+# MEDIA_URL = "/blog_images/"
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'blogs.User' 
-# AUTHENTICATION_BACKENDS = ['blogs.authentication.EmailOrUsernameBackend']
 AUTHENTICATION_BACKENDS = [
     'blogs.authentication.EmailOrUsernameBackend',
     'django.contrib.auth.backends.ModelBackend',  
@@ -184,7 +202,6 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
-# Allow specific headers (for authentication)
 CORS_ALLOW_HEADERS = [
     "accept",
     "content-type",
