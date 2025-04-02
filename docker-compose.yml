@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:5.8
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: blog_db
+      MYSQL_USER: blog_user
+      MYSQL_PASSWORD: Akanksha@123
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3012:3012"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: django_backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=blog_db
+      - DB_USER=blog_user
+      - DB_PASSWORD=Akanksha@123
+      - DB_HOST=localhost
+    ports:
+      - "8005:8005"
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./blog_frontend
+    container_name: react_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "5005:80"
+
+volumes:
+  mysql_data:
